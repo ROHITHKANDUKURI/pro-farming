@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation System - Predict</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-green-50">
+    <nav class="bg-green-600 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl font-bold">Pro-Farming</h1>
+            <div class="space-x-4">
+                <a href="/" class="text-white hover:text-green-200">Home</a>
+                <a href="/predict" class="text-white hover:text-green-200">Predict</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl font-bold text-green-800 mb-8 text-center">Crop Prediction</h2>
+
+            <!-- Form with corrected field names -->
+            <form action="/predict_crop" method="POST" class="bg-white rounded-lg shadow-md p-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="Nitrogen" class="block text-gray-700 font-medium mb-2">Nitrogen (N)</label>
+                        <input type="number" id="Nitrogen" name="N" step="0.01" required
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                            placeholder="Enter N value">
+                    </div>
+
+                    <div>
+                        <label for="Phosphorus" class="block text-gray-700 font-medium mb-2">Phosphorus (P)</label>
+                        <input type="number" id="Phosphorus" name="P" step="0.01" required
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                            placeholder="Enter P value">
+                    </div>
+
+                    <div>
+                        <label for="Potassium" class="block text-gray-700 font-medium mb-2">Potassium (K)</label>
+                        <input type="number" id="Potassium" name="K" step="0.01" required
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                            placeholder="Enter K value">
+                    </div>
+
+                    <div>
+                        <label for="Temperature" class="block text-gray-700 font-medium mb-2">Temperature (°C)</label>
+                        <input type="number" id="Temperature" name="temperature" step="0.01" required
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                            placeholder="Enter temperature">
+                    </div>
+
+                    <div>
+                        <label for="Humidity" class="block text-gray-700 font-medium mb-2">Humidity (%)</label>
+                        <input type="number" id="Humidity" name="humidity" step="0.01" required
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                            placeholder="Enter humidity">
+                    </div>
+
+                    <div>
+                        <label for="ph" class="block text-gray-700 font-medium mb-2">pH</label>
+                        <input type="number" id="ph" name="ph" step="0.01" required
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                            placeholder="Enter pH value">
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label for="Rainfall" class="block text-gray-700 font-medium mb-2">Rainfall (mm)</label>
+                        <input type="number" id="Rainfall" name="rainfall" step="0.01" required
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                            placeholder="Enter rainfall">
+                    </div>
+                </div>
+
+                <div class="mt-8 text-center">
+                    <button type="submit"
+                        class="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition duration-300">
+                        Predict Crop
+                    </button>
+                </div>
+            </form>
+
+            <!-- Display the result if available -->
+            <div id="result" class="mt-8 bg-white rounded-lg shadow-md p-6 {% if crop %}block{% else %}hidden{% endif %}">
+                <h3 class="text-xl font-semibold text-green-700 mb-4">Recommended Crop</h3>
+                <p id="prediction-result" class="text-gray-700 text-lg">You should grow <u>{{ crop }}</u> in your farm.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-green-600 text-white mt-12 py-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Pro-Farming. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
